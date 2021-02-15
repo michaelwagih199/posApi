@@ -59,4 +59,5 @@ public class SaleOrderPaymentController implements BluePrintController<SaleOrder
                                           @RequestParam String orderCode){
         return orderPaymentService.createPayment(saleOrderPayment,orderCode);
     }
+
 }

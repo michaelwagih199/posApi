@@ -61,10 +61,10 @@ public class SaleOrderController implements BluePrintController<SaleOrder> {
 
     @PostMapping
     public SaleOrder createOrder(@RequestBody SaleOrder saleOrder,
-                                 @RequestParam(defaultValue = "0") Long customerId,
+                                 @RequestParam(defaultValue = "") String customerName,
                                  @RequestParam Long orderTypeId,
                                  @RequestParam Long paymentTypeId) {
-        return saleOrderService.createOrder(saleOrder, customerId, orderTypeId, paymentTypeId);
+        return saleOrderService.createOrder(saleOrder, customerName, orderTypeId, paymentTypeId);
     }
 
     @Override

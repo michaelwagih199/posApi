@@ -5,6 +5,7 @@ import com.polimigo.pos.pos.customers.models.CustomerPayment;
 import com.polimigo.pos.pos.customers.repository.CustomerPaymentRepository;
 import com.polimigo.pos.pos.customers.repository.CustomerRepository;
 import com.polimigo.pos.pos.exceptions.ResourceNotFoundException;
+import com.polimigo.pos.pos.sale_orders.repository.SaleOrderPaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,6 +28,9 @@ public class ImpCustomerPaymentService implements CustomerPaymentService {
 
     @Autowired
     CustomerRepository customerRepository;
+
+    @Autowired
+    SaleOrderPaymentRepository saleOrderPaymentRepository;
 
     @Override
     public CustomerPayment createObject(CustomerPayment object) {
@@ -83,6 +87,11 @@ public class ImpCustomerPaymentService implements CustomerPaymentService {
     @Override
     public BigDecimal getAllPayment(Long customerId) {
         return customerPaymentRepository.getAllPayment(customerId);
+    }
+
+    @Override
+    public BigDecimal getCustomerOrderCost(Long customerId) {
+        return saleOrderPaymentRepository.customerNetCostOrder(customerId);
     }
 
 

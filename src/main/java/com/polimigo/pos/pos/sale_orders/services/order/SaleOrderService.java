@@ -6,7 +6,7 @@ import com.polimigo.pos.pos.sale_orders.models.SaleOrder;
  * @author michael wagih
  */
 public interface SaleOrderService extends BluePrintService<SaleOrder> {
-    SaleOrder createOrder(SaleOrder saleOrder, Long customerId, Long orderTypeId, Long paymentTypeId);
+    SaleOrder createOrder(SaleOrder saleOrder, String customerName, Long orderTypeId, Long paymentTypeId);
     String getNextCode(String shift);
 
     SaleOrder findByOrderCode(String orderCode);

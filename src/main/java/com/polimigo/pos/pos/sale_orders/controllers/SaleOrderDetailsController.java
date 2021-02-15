@@ -5,7 +5,6 @@ import com.polimigo.pos.pos.sale_orders.models.SaleOrderDetails;
 import com.polimigo.pos.pos.sale_orders.payload.OrderDetailsPayload;
 import com.polimigo.pos.pos.sale_orders.services.order_details.SaleOrderDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

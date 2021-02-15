@@ -23,6 +23,7 @@ public class CustomerPaymentController implements BluePrintController<CustomerPa
     @Autowired
     CustomerPaymentService customerPaymentService;
 
+
     @GetMapping
     @Override
     public ResponseEntity getObject() {
@@ -87,4 +88,11 @@ public class CustomerPaymentController implements BluePrintController<CustomerPa
         customerPaymentService.deleteObject(id);
     }
 
+    /**
+     * calc customer
+     */
+    @GetMapping("customerNetCost")
+    public ResponseEntity getCustomerOrderCost(@RequestParam Long customerId){
+        return ResponseEntity.ok().body(customerPaymentService.getCustomerOrderCost(customerId));
+    }
 }

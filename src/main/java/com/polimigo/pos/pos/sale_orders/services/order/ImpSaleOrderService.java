@@ -64,13 +64,12 @@ public class ImpSaleOrderService implements SaleOrderService {
 
 
     @Override
-    public SaleOrder createOrder(SaleOrder saleOrder, Long customerId, Long orderTypeId, Long paymentTypeId ) {
-
-        if (customerId==0)
+    public SaleOrder createOrder(SaleOrder saleOrder, String customerName, Long orderTypeId, Long paymentTypeId) {
+        if (customerName == "" || customerName.isEmpty())
             saleOrder.setCustomer(customerRepository.findByCustomerName("عميل كاش").get(0));
         else
-            saleOrder.setCustomer(customerRepository.findById(customerId).orElseThrow(() -> new ResourceNotFoundException("id" + customerId + "not found")));
-        saleOrder.setOrderCode(getNextCode("1"));
+            saleOrder.setCustomer(customerRepository.findByCustomerName(customerName).get(0));
+        saleOrder.setOrderCode("1".concat("1").concat("00").concat(String.valueOf(saleOrderRepository.count() + 1)));
         saleOrder.setOrderType(orderTypeRepository.findById(orderTypeId).orElseThrow(() -> new ResourceNotFoundException("orderType Id not found")));
         saleOrder.setPaymentType(paymentTypeRepository.findById(paymentTypeId).orElseThrow(() -> new ResourceNotFoundException("paymentTypeId not found")));
 
@@ -79,7 +78,7 @@ public class ImpSaleOrderService implements SaleOrderService {
 
     @Override
     public String getNextCode(String shift) {
-        return "1".concat(shift).concat("00").concat(String.valueOf(saleOrderRepository.count()+1));
+        return "1".concat(shift).concat("00").concat(String.valueOf(saleOrderRepository.count() + 1));
     }
 
     @Override

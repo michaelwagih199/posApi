@@ -12,9 +12,7 @@ import java.util.List;
  */
 public interface CustomerPaymentService extends BluePrintService<CustomerPayment> {
     public abstract CustomerPayment createPayment(CustomerPayment customerPayment,Long customerId);
-
     Page<CustomerPayment> findByCustomerId(Integer pageNo, Integer pageSize, String sortBy, Long customerId);
-
     BigDecimal getAllPayment(Long customerId);
-
+    BigDecimal getCustomerOrderCost(Long customerId);
 }
