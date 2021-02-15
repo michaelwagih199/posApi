@@ -5,7 +5,11 @@ import com.polimigo.pos.pos.expenses.models.ExpensesCategory;
 import com.polimigo.pos.pos.expenses.repository.ExpensesCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 /**
  * @author michael wagih
@@ -43,8 +47,22 @@ public class ImpExpensesCategoryService implements ExpensesCategoryService {
         return null;
     }
 
+
     @Override
     public Page<ExpensesCategory> getPages(Integer pageNo, Integer pageSize, String sortBy) {
-        return null;
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+        Page<ExpensesCategory> pagedResult = expensesCategoryRepository.findPage(paging);
+        return pagedResult;
     }
+
+    @Override
+    public List<String> getAllName() {
+        return expensesCategoryRepository.getCategoryNames();
+    }
+
+    @Override
+    public List<ExpensesCategory> findBycategoryName(String categoryName) {
+        return expensesCategoryRepository.findByCategoryName(categoryName);
+    }
+
 }

@@ -8,4 +8,5 @@ import com.polimigo.pos.pos.expenses.models.ExpensesCategory;
  * @author michael wagih
  */
 public interface ExpensesService extends BluePrintService<Expenses> {
+    Expenses createExpenses(Expenses expenses, Long categoryId);
 }
