@@ -1,6 +1,5 @@
-package com.polimigo.pos.pos.expenses.models;
+package com.polimigo.pos.pos.suppliers.models;
 
-import com.polimigo.pos.pos.stock.models.ProductCategory;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +7,6 @@ import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.Date;
 
 import static javax.persistence.TemporalType.TIMESTAMP;
@@ -22,21 +20,15 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @NoArgsConstructor
 @ToString
 @Entity
-public class Expenses {
+public class Suppliers {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String expensesName;
-    private BigDecimal expensesValue;
-
-    @Temporal(TIMESTAMP)
-    protected Date expensesDate;
-
+    private String suppliersName;
+    private String suppliersPhone;
+    private String suppliersCompany;
+    private String suppliersAddress;
     private String notes;
-
-    @ManyToOne( fetch = FetchType.LAZY)
-    @JoinColumn(name = "expesesCategoryId")
-    private ExpensesCategory expensesCategory;
 
     @CreatedDate
     @Temporal(TIMESTAMP)
@@ -46,4 +38,5 @@ public class Expenses {
     protected void onCreate() {
         createdDate = new Date();
     }
+
 }

@@ -2,7 +2,6 @@ package com.polimigo.pos.pos.expenses.controller;
 
 import com.polimigo.pos.pos.bluPrint.BluePrintController;
 import com.polimigo.pos.pos.expenses.models.Expenses;
-import com.polimigo.pos.pos.expenses.models.ExpensesCategory;
 import com.polimigo.pos.pos.expenses.services.expensesService.ExpensesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,7 +34,6 @@ public class ExpensesController implements BluePrintController<Expenses> {
             @RequestParam(defaultValue = "0") Integer page,
             @RequestParam(defaultValue = "6") Integer size,
             @RequestParam(defaultValue = "id") String sortBy) {
-
         Page<Expenses> patientPage;
         patientPage = expensesService.getPages(page, size, sortBy);
         Map<String, Object> response = new HashMap<>();

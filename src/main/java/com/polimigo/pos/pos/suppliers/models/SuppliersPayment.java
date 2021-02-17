@@ -1,6 +1,6 @@
-package com.polimigo.pos.pos.expenses.models;
+package com.polimigo.pos.pos.suppliers.models;
 
-import com.polimigo.pos.pos.stock.models.ProductCategory;
+import com.polimigo.pos.pos.customers.models.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,33 +10,29 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.function.Supplier;
 
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 /**
  * @author michael wagih
  */
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Entity
-public class Expenses {
+public class SuppliersPayment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String expensesName;
-    private BigDecimal expensesValue;
-
-    @Temporal(TIMESTAMP)
-    protected Date expensesDate;
-
+    private Date paymentDate;
+    private BigDecimal paymentValue;
     private String notes;
 
     @ManyToOne( fetch = FetchType.LAZY)
-    @JoinColumn(name = "expesesCategoryId")
-    private ExpensesCategory expensesCategory;
+    @JoinColumn(name = "supplier_id")
+    private Supplier supplier;
 
     @CreatedDate
     @Temporal(TIMESTAMP)
@@ -46,4 +42,6 @@ public class Expenses {
     protected void onCreate() {
         createdDate = new Date();
     }
+
+
 }
