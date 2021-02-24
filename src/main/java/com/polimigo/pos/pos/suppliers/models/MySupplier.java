@@ -9,7 +9,6 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.function.Supplier;
 
 import static javax.persistence.TemporalType.TIMESTAMP;
 
@@ -17,33 +16,27 @@ import static javax.persistence.TemporalType.TIMESTAMP;
  * @author michael wagih
  */
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Entity
-public class PurchasesBill {
+
+public class MySupplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Temporal(TIMESTAMP)
-    protected Date billsDate;
+    private String supplierName;
+    private String supplierPhone;
+    private String supplierCompany;
+    private String supplierAddress;
     private String notes;
-    private BigDecimal total;
-    private BigDecimal paid;
-    private BigDecimal remaining;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "supplier_id")
-    private Supplier supplier;
-
-
-    /**
-     * crated date
-     */
     @CreatedDate
     @Temporal(TIMESTAMP)
     protected Date createdDate;
+
     @PrePersist
     protected void onCreate() {
         createdDate = new Date();
