@@ -3,7 +3,6 @@ package com.polimigo.pos.pos.purchases.controllers;
 import com.polimigo.pos.pos.bluPrint.BluePrintController;
 import com.polimigo.pos.pos.purchases.models.PurchasesBill;
 import com.polimigo.pos.pos.purchases.services.PurchasesBill.PurchasesBillService;
-import com.polimigo.pos.pos.suppliers.models.MySupplier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -17,7 +16,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("api/purchasesBills")
-public class PurchasesBillController implements BluePrintController<PurchasesBill> {
+public class PurchasesBillController implements BluePrintController<PurchasesBill>{
 
     @Autowired
     PurchasesBillService purchasesBillService;
@@ -53,6 +52,12 @@ public class PurchasesBillController implements BluePrintController<PurchasesBil
     public PurchasesBill getObjectById(@PathVariable Long id) {
         return purchasesBillService.findObject(id);
     }
+
+    @GetMapping("nextCode")
+    public ResponseEntity getNextCode(){
+        return ResponseEntity.ok().body(purchasesBillService.getNextCode());
+    }
+
 
     @Override
     public PurchasesBill addObject(PurchasesBill object) {

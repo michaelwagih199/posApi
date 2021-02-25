@@ -13,4 +13,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface PurchasesBillRepository extends CrudRepository<PurchasesBill,Long> {
     @Query("SELECT p FROM PurchasesBill p")
     Page<PurchasesBill>findPage(Pageable paging);
+
+    PurchasesBill findByBillCodeCode(String billCodeCode);
 }

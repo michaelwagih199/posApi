@@ -3,7 +3,7 @@ package com.polimigo.pos.pos.purchases.services.PurchasesBill;
 import com.polimigo.pos.pos.exceptions.ResourceNotFoundException;
 import com.polimigo.pos.pos.purchases.models.PurchasesBill;
 import com.polimigo.pos.pos.purchases.repository.PurchasesBillRepository;
-import com.polimigo.pos.pos.suppliers.models.MySupplier;
+import com.polimigo.pos.pos.stock.repositories.ProductRepository;
 import com.polimigo.pos.pos.suppliers.repositories.SuppliersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,13 +22,20 @@ public class ImpPurshasesBillsService implements PurchasesBillService {
     PurchasesBillRepository purchasesBillRepository;
     @Autowired
     SuppliersRepository suppliersRepository;
+    @Autowired
+    ProductRepository productRepository;
 
     @Override
     public PurchasesBill createPurshaseBills(PurchasesBill purchasesBill, Long supplierId) {
         purchasesBill.setMySupplier(suppliersRepository.findById(supplierId)
         .orElseThrow(() -> new ResourceNotFoundException("supplier"+supplierId+"\tnot found")));
-        purchasesBill.setBillCodeCode("2100"+purchasesBillRepository.count()+12);
+        purchasesBill.setBillCodeCode("2100"+purchasesBillRepository.count());
         return purchasesBillRepository.save(purchasesBill);
+    }
+
+    @Override
+    public String getNextCode() {
+        return "2100"+purchasesBillRepository.count();
     }
 
     @Override
@@ -53,7 +60,7 @@ public class ImpPurshasesBillsService implements PurchasesBillService {
 
     @Override
     public PurchasesBill findObject(Long id) {
-        return purchasesBillRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("id"+id+"not found"));
+        return purchasesBillRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("id" + id + "not found"));
     }
 
     @Override

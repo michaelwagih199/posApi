@@ -8,6 +8,7 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import static javax.persistence.TemporalType.TIMESTAMP;
@@ -25,7 +26,6 @@ public class PurchasesBill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String billCodeCode;
-    private String billCodeSerial;
 
     @Temporal(TIMESTAMP)
     protected Date billsDate;
@@ -37,10 +37,6 @@ public class PurchasesBill {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mySupplier_id")
     private MySupplier mySupplier;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "details")
-    private Set<PurchasesBillDetails> purchasesBillDetails;
 
     /**
      * crated date

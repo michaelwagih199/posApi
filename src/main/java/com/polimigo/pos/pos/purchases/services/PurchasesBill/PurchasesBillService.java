@@ -8,4 +8,6 @@ import com.polimigo.pos.pos.purchases.models.PurchasesBill;
  */
 public interface PurchasesBillService extends BluePrintService<PurchasesBill> {
     PurchasesBill createPurshaseBills(PurchasesBill purchasesBill, Long supplierId);
+    String getNextCode();
+
 }

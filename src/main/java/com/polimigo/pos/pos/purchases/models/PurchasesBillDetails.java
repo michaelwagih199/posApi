@@ -31,8 +31,12 @@ public class PurchasesBillDetails {
     private BigDecimal total;
 
     @ManyToOne( fetch = FetchType.LAZY)
+    @JoinColumn(name = "purchasesBill_id")
+    private PurchasesBill purchasesBill;
+
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    private Product products;
+    private Product product;
 
     /**
      * crated date
